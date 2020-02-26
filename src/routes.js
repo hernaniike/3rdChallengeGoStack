@@ -5,8 +5,8 @@ import SessionController from './app/controllers/SessionController';
 import RecipientController from './app/controllers/RecipientsController';
 import DeliveryGuysController from './app/controllers/DeliveryGuysController';
 import DeliveryguyController from './app/controllers/DeliveryguyController';
+import DeliveryProblemsController from './app/controllers/DeliveryProblemController';
 import OrderController from './app/controllers/OrderController';
-import FileController from './app/controllers/FileController';
 import multerConfig from './config/multer';
 import authMiddleware from './app/middlewares/auth';
 
@@ -30,8 +30,15 @@ routes.put(
   // FileController.store,
   DeliveryguyController.updateEnd
 );
+routes.post('/delivery/:id/newProblem', DeliveryProblemsController.store);
+routes.get('/problemslist', DeliveryProblemsController.index);
+routes.get('/delivery/:id/problems', DeliveryProblemsController.orderproblem);
 routes.use(authMiddleware.authenticated);
 // routes.use(authMiddleware.isAdmin);
+routes.delete(
+  '/problem/:problemId/cancel-delivery',
+  DeliveryProblemsController.delete
+);
 routes.post(
   '/addrecipients',
   authMiddleware.isAdmin,
