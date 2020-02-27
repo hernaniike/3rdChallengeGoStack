@@ -36,7 +36,6 @@ class DeliveryProblemsController {
     return res.json(problems);
   }
 
-  // continuar daqui
   async orderproblem(req, res) {
     const orderId = req.params.id;
     const orderExist = await Order.findByPk(orderId);
