@@ -7,28 +7,26 @@
 </h3>
 
 <h3 align="center">
-  :warning: Etapa 2/4 do Desafio Final :warning:
+  :warning: Step 2/4 Final Challenge :warning:
 </h3>
 
-<blockquote align="center">“Não espere para plantar, apenas tenha paciência para colher”!</blockquote>
-
 <p align="center">
-<a href="#rocket-sobre-o-desafio">Sobre o desafio</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-<a href="#um-pouco-sobre-as-ferramentas">Ferramentas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-<a href="#como-instalar-o-projeto-na-sua-máquina">Como Instalar </a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-<a href="#funcionalidades">Funcionalidades</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<a href="#rocket-sobre-o-desafio">About the challenge</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<a href="#A little bit about the tools">Tools</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<a href="#how-install-project-in-your-machine">How to install </a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<a href="#functionality">Functionality</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 
 
-## :rocket: Sobre o desafio
-Esse desafio é a segunda parte do Desafio Final
+## :rocket: About the challenge
+This is the second part of the challenge
 
-Continuação do desenvolvimento de um app para uma transportadora fictícia, o FastFeet.
+Continue developing an app for a fictitious freight company, The FastFeet.
 
-Nesta parte do projeto foi terminada a aplicação back-end do FastFeet.
-A API possui deiversas funcionalidades e faz parte de um projeto final com back-end, front-end e mobile.
+In this part of the project it was finished the backend of this application.
+An API has many functionalities and it is part of the final project for our backend, front-end and mobile app.
 
-## **Um pouco sobre as ferramentas**
-Durante a resolução do desafio, utilizei as ferramentas :
+## **Tools used**
+During the challenge the tools below were used:
 
 - NodeJS
 - Yarn
@@ -46,60 +44,56 @@ Durante a resolução do desafio, utilizei as ferramentas :
 - [Multer] (https://github.com/expressjs/multer)
 - [NodeMailer] (https://nodemailer.com/about/)
 - [Handlebars] (https://handlebarsjs.com/) (Templates Engines)
-- [Beequeue] (https://github.com/bee-queue/bee-queue) (Background job)
 
-## **Como instalar o projeto na sua máquina**
+## **How to install the project in your machine**
 1. Git clone.
-2. Instale as dependecias do projeto :&nbsp;&nbsp;&nbsp; `yarn add`&nbsp;  ou &nbsp; `npm install`
-3. Reenomeie o arquivo **.env.example** para **.env**
-4. Configure as variáveis de ambiente (arquivo .env) de acordo com seu ambiente local.
-5. Rodar as seeds e migrations:
+2. Install all dependencies of the project:&nbsp;&nbsp;&nbsp; `yarn add`&nbsp;  ou &nbsp; `npm install`
+3. Configure from file .env your local variables.
+5. Run seeds and migrations:
 ```sh
 yarn sequelize db:migrate
 yarn sequelize db:seed:all
 ```
-6. Após finalizar as configurações, inicie a aplicação executando no seu terminal `yarn dev`
+6. After that, start your application running `yarn dev` in your terminal.
 
-## **Funcionalidades**
+## **Functionality**
 
-Abaixo estão descritas as funcionalidades da API.
+### **1. Admin Autentication**
 
-### **1. Autenticação dos Administradores**
+Log in permission for a user using email and password.
 
-Permissão para que um usuário se autentique na aplicação utilizando e-mail e uma senha.
+- The auth was done using JWT(json web token).
+- Input data validation.
+- Admin hast access to all application, he can manage all delivery guys, recipients and orders.
 
-- A autenticação foi feita utilizando JWT.
-- Validação dos dados de entrada.
-- Administrador tem acesso a todas as rotas da aplicação.
-- Pode gerenciar todos os entregadores, destinatários e entregas.
+### **2. Recipient Management**
 
-### **2. Gestão de destinatários**
+- You must have admin permission for manage recipients like create/update/delete.
+- Input Data Validation
+- Recipient does not has a password.
 
-Permissão para que os destinatários sejam mantidos (cadastrados/atualizados) na aplicação.
+### **3. Delivery Guys Management**
 
-- O gerenciamento de destinatários só pode ser feito por administradores autenticados na aplicação.
-- Validação dos dados de entrada
-- O destinatário não pode se autenticar no sistema, ou seja, não possui senha.
+CRUD for delivery guys
 
-### **3. Gestão de entregadores**
+- Delivery Guys management can be done only by admin.
+- Input data validation.
+- Delivery Guy can not log in the system.
+- Delivery Guy may check deliveries attached to him.
+- Delivery Guy may start one delivery order as long he started between business hours(08:00~18:00) and he did less than 5 deliveries in that day.
+- Delivery Guy may finish one deliver, as long he send a picture with recipient signature.
+- Delivery Guy may register any issue with your deliveries.
 
-CRUD para que os entregadores sejam mantidos na aplicação.
+### **4. Order Management**
 
-- O gerencimaneto de entregadores só pode ser feito por administradores autenticados na aplicação.
-- Validação dos dados de entrada
-- O entregador não pode se autenticar no sistema, ou seja, não possui senha.
-- O entregador pode visualizar as entregas vinculadas a ele.
-- O entregador pode iniciar uma entrega desde que esteja dentro do horário ( 08: as 18:00 ), e desde que não tenha atingido a cota de  5 ou entregas iniciadas no dia.
-- O entregador pode finalizar uma entrega, desde que envie uma foto de sua assinatura.
-- O entregador pode cadastrar um problema nas suas entregas.
+CRUD for orders.
 
-### **4. Gestão de encomendas**
+- Orders Management can be done only by admins.
+- Input Data Validation.
+- Start Delivery can be done only between business hours.
+- If one order has a problem, only admin can cancel it.
+- When the order is created and email it will be sent to the Delivery Guy attached to that delivery.
+- When the order is canceled and email it will be sent to the Delivery Guy attached to that delivery.
 
-CRUD para que as encomendas sejam mantidas na aplicação.
-
-- O gerencimaneto de encomendas só pode ser feito por administradores autenticados na aplicação.
-- Validação dos dados de entrada.
-- A retirada de encomendas só pode ser feita entre 08:00 e 18:00 horas
-
-## :memo: Guilherme Ribas
-Desafio realizado por Guilherme Ribas.
+## :memo: Hernani Ike
+Challenge done by Hernani Ike.
